@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JBC Engineering Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:  #0A0A0F;
+  --dark:   #1A1A2E;
+  --gray1:  #6B7280;
+  --gray2:  #F3F4F6;
+  --white:  #FFFFFF;
+  --teal:   #00B4A2;
+  --teal-d: #009688;
+  --amber:  #F59E0B;
+  --ice:    #E0F7F5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.22,.68,0,1.2),transform .7s cubic-bezier(.22,.68,0,1.2)}
+.reveal.visible{opacity:1;transform:none}
+.reveal.delay-1{transition-delay:.1s}
+.reveal.delay-2{transition-delay:.2s}
+.reveal.delay-3{transition-delay:.32s}
+.reveal.delay-4{transition-delay:.44s}
+
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.4);opacity:1}}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:var(--black);color:rgba(255,255,255,.7);
+  text-align:center;padding:.5rem;font-size:.72rem;letter-spacing:.1em;
+}
+.topbar span{color:var(--teal);font-weight:600}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  padding:0 4rem;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo-wrap{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-name{font-size:1rem;font-weight:800;color:var(--black);letter-spacing:-.02em}
+.logo-name sup{font-size:.5rem;font-weight:500;color:var(--teal);vertical-align:super;letter-spacing:.05em;margin-left:.1rem}
+
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  font-size:.8rem;font-weight:500;color:var(--gray1);
+  text-decoration:none;transition:color .2s;letter-spacing:-.01em;
+}
+.nav-links a:hover{color:var(--black)}
+
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-phone{font-size:.78rem;font-weight:600;color:var(--black);text-decoration:none}
+.nav-cta{
+  padding:.55rem 1.4rem;border-radius:8px;
+  background:var(--black);color:var(--white);
+  font-size:.78rem;font-weight:700;text-decoration:none;letter-spacing:-.01em;
+  transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:var(--dark);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:92vh;display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:6rem 4rem 6rem 4rem;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--ice);border-radius:100px;
+  padding:.35rem .9rem;margin-bottom:2rem;width:fit-content;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse-dot 2s ease infinite}
+.badge-text{font-size:.72rem;font-weight:600;color:var(--teal-d);letter-spacing:.05em}
+
+h1.hero-h{
+  font-size:clamp(3rem,5vw,5.2rem);font-weight:800;
+  line-height:1;letter-spacing:-.04em;
+  color:var(--black);margin-bottom:1.5rem;
+}
+h1.hero-h .accent{color:var(--teal)}
+h1.hero-h .line-thin{font-weight:300;color:var(--gray1)}
+
+.hero-sub{
+  font-size:1rem;color:var(--gray1);line-height:1.7;
+  max-width:420px;margin-bottom:3rem;font-weight:400;
+}
+
+.hero-btns{display:flex;gap:.8rem;align-items:center}
+.btn-dark{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 2rem;border-radius:10px;
+  background:var(--black);color:var(--white);
+  font-size:.85rem;font-weight:700;text-decoration:none;letter-spacing:-.01em;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-teal{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 2rem;border-radius:10px;
+  background:var(--teal);color:var(--white);
+  font-size:.85rem;font-weight:700;text-decoration:none;letter-spacing:-.01em;
+  transition:transform .2s,background .2s;
+}
+.btn-teal:hover{transform:translateY(-2px);background:var(--teal-d)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 2rem;border-radius:10px;
+  background:transparent;border:1.5px solid rgba(0,0,0,.15);
+  color:var(--black);font-size:.85rem;font-weight:600;text-decoration:none;letter-spacing:-.01em;
+  transition:border-color .2s,background .2s;
+}
+.btn-outline:hover{border-color:var(--black);background:var(--gray2)}
+
+.hero-stats{
+  display:flex;gap:2.5rem;margin-top:3.5rem;
+  padding-top:2.5rem;border-top:1px solid rgba(0,0,0,.08);
+}
+.hs-n{font-size:2rem;font-weight:800;color:var(--black);letter-spacing:-.04em;line-height:1}
+.hs-n span{color:var(--teal)}
+.hs-l{font-size:.72rem;color:var(--gray1);margin-top:.2rem;font-weight:500}
+
+/* Hero right */
+.hero-right{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#0A0A0F 0%,#1A1A2E 40%,#002F2B 100%);
+}
+.hero-img-layer{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(10,10,15,.6) 0%,transparent 50%),
+    linear-gradient(to top,rgba(10,10,15,.8) 0%,transparent 40%);
+  z-index:1;
+}
+.hero-photo-bg{
+  position:absolute;inset:0;z-index:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8rem;opacity:.08;
+  background:radial-gradient(circle at 60% 40%,rgba(0,180,162,.15) 0%,transparent 60%);
+}
+
+/* Floating work cards */
+.work-card{
+  position:absolute;z-index:3;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(16px);
+  border-radius:14px;padding:.9rem 1.2rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+.wc-brand{font-size:.58rem;font-weight:600;color:var(--gray1);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.wc-title{font-size:.9rem;font-weight:700;color:var(--black)}
+.wc-sub{font-size:.72rem;color:var(--teal);font-weight:600;margin-top:.1rem}
+
+.status-card{
+  position:absolute;z-index:3;bottom:8%;right:5%;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(16px);
+  border-radius:14px;padding:.8rem 1.1rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  display:flex;align-items:center;gap:.8rem;
+}
+.status-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--teal);display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.status-text .st-l{font-size:.58rem;color:var(--gray1);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.status-text .st-v{font-size:.82rem;font-weight:700;color:var(--black)}
+
+/* Hero center visual SVG */
+.hero-vis-wrap{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center}
+
+/* ── SECTION COMMON ── */
+.sec{padding:6rem 4rem}
+.sec-gray{background:var(--gray2)}
+.sec-black{background:var(--black);color:var(--white)}
+.sec-ice{background:var(--ice)}
+
+.label{
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:.8rem;
+}
+.label.dark-label{color:rgba(255,255,255,.5)}
+h2.sh{
+  font-size:clamp(2.2rem,3.5vw,3.4rem);font-weight:800;
+  letter-spacing:-.04em;line-height:1.05;color:var(--black);
+}
+h2.sh.light{color:var(--white)}
+h2.sh .a{color:var(--teal)}
+.sh-sub{font-size:.95rem;color:var(--gray1);line-height:1.7;margin-top:.8rem;max-width:520px}
+.sh-sub.light{color:rgba(255,255,255,.55)}
+
+/* ── SERVICES ── */
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.srv-card{
+  border-radius:20px;overflow:hidden;cursor:default;
+  transition:transform .3s cubic-bezier(.22,.68,0,1.2),box-shadow .3s;
+}
+.srv-card:hover{transform:translateY(-8px);box-shadow:0 32px 64px rgba(0,0,0,.1)}
+.srv-top{
+  padding:2.5rem 2.2rem 2rem;
+  position:relative;overflow:hidden;
+}
+.srv-s0{background:linear-gradient(145deg,#002F2B,#004D44,#00B4A2)}
+.srv-s1{background:linear-gradient(145deg,#0A0A0F,#1A1A2E,#2D3A50)}
+.srv-s2{background:linear-gradient(145deg,#1A0F00,#3D2800,#8B6914)}
+.srv-top-num{
+  position:absolute;top:1.5rem;right:1.8rem;
+  font-size:5rem;font-weight:800;color:rgba(255,255,255,.06);
+  line-height:1;letter-spacing:-.05em;
+}
+.srv-emoji{width:52px;height:52px;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.12);border-radius:12px;border:1px solid rgba(255,255,255,0.15)}
+.srv-tname{
+  font-size:1.5rem;font-weight:800;color:#fff;
+  letter-spacing:-.03em;line-height:1.1;
+}
+.srv-tcat{
+  font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-top:.4rem;
+}
+.srv-body{padding:1.8rem 2.2rem 2.2rem;background:#fff}
+.srv-desc{font-size:.85rem;color:var(--gray1);line-height:1.7;margin-bottom:1.2rem}
+.srv-items{display:flex;flex-direction:column;gap:.45rem}
+.srv-item{
+  font-size:.8rem;font-weight:500;color:var(--black);
+  display:flex;align-items:center;gap:.6rem;
+}
+.srv-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+/* ── ABOUT ── */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+
+.about-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+h2.about-title{
+  font-size:clamp(2rem,3vw,3rem);font-weight:800;
+  letter-spacing:-.04em;line-height:1.05;color:#fff;margin-bottom:1.5rem;
+}
+.about-story{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:.8rem}
+
+.about-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+.pill{
+  padding:.4rem 1rem;border-radius:100px;
+  background:rgba(0,180,162,.12);border:1px solid rgba(0,180,162,.2);
+  font-size:.75rem;font-weight:600;color:var(--teal);
+}
+
+.about-nums{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-radius:20px;overflow:hidden;background:rgba(255,255,255,.06)}
+.an-cell{
+  padding:2.2rem;background:rgba(255,255,255,.03);
+  transition:background .3s;
+}
+.an-cell:hover{background:rgba(255,255,255,.06)}
+.an-n{font-size:2.8rem;font-weight:800;letter-spacing:-.04em;color:var(--white);line-height:1}
+.an-n .tu{color:var(--teal)}
+.an-l{font-size:.72rem;font-weight:500;color:rgba(255,255,255,.4);margin-top:.3rem;text-transform:uppercase;letter-spacing:.1em}
+
+.mv-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.mv{
+  padding:1.5rem;border-radius:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  transition:border-color .2s;
+}
+.mv:hover{border-color:rgba(0,180,162,.3)}
+.mv-t{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.mv-p{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.65}
+
+/* ── PORTFOLIO ── */
+.port-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.port-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:280px 280px;
+  gap:1rem;
+}
+.pi{
+  border-radius:16px;overflow:hidden;position:relative;
+  background:var(--gray2);cursor:pointer;
+  transition:transform .3s;
+}
+.pi:hover{transform:scale(1.01)}
+.pi:hover .pi-over{opacity:1}
+.pi-bg{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;
+  background:linear-gradient(135deg,#E0F7F5,#B2EBE8);
+}
+.pi-bg.dark{background:linear-gradient(135deg,#1A1A2E,#0D2137)}
+.pi-bg.amber{background:linear-gradient(135deg,#FEF3C7,#FDE68A)}
+.pi-over{
+  position:absolute;inset:0;background:rgba(0,180,162,.85);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;
+}
+.pi-label{
+  position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;
+  background:linear-gradient(to top,rgba(0,0,0,.7),transparent);
+  font-size:.72rem;font-weight:600;color:#fff;letter-spacing:.03em;
+}
+/* Grid positions */
+.pi1{grid-column:1/6;grid-row:1/2}
+.pi2{grid-column:6/9;grid-row:1/2}
+.pi3{grid-column:9/13;grid-row:1/2}
+.pi4{grid-column:1/4;grid-row:2/3}
+.pi5{grid-column:4/9;grid-row:2/3}
+.pi6{grid-column:9/13;grid-row:2/3}
+
+/* ── WHY ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.why-card{
+  padding:2rem;border-radius:16px;background:#fff;
+  border:1px solid rgba(0,0,0,.06);
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.why-card:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,180,162,.1)}
+.why-ico{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--ice);display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.2rem;
+}
+.why-t{font-size:1rem;font-weight:700;color:var(--black);margin-bottom:.5rem;letter-spacing:-.02em}
+.why-p{font-size:.82rem;color:var(--gray1);line-height:1.65}
+
+/* ── CLIENTS ── */
+.cli-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(0,0,0,.06);
+  border-radius:16px;overflow:hidden;margin-top:3.5rem;
+}
+.cli-cell{
+  background:#fff;padding:1.8rem 1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  transition:background .2s;cursor:default;
+}
+.cli-cell:hover{background:var(--ice)}
+.cli-ico{width:38px;height:38px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--ice);border-radius:8px}
+.cli-name{font-size:.88rem;font-weight:600;color:var(--black)}
+
+/* ── FORM ── */
+.form-wrap{max-width:700px;margin:0 auto;margin-top:3rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+label.fl{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+input.fi,select.fi,textarea.fi{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:.8rem 1rem;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:#fff;
+  outline:none;transition:border-color .2s,background .2s;width:100%;
+}
+input.fi:focus,select.fi:focus,textarea.fi:focus{
+  border-color:var(--teal);background:rgba(0,180,162,.08);
+}
+input.fi::placeholder,textarea.fi::placeholder{color:rgba(255,255,255,.2)}
+select.fi option{background:#1A1A2E;color:#fff}
+textarea.fi{resize:vertical;min-height:110px}
+.full-col{grid-column:1/-1}
+.btn-form{
+  grid-column:1/-1;width:100%;padding:1rem;border-radius:12px;
+  background:var(--teal);color:#fff;border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;font-weight:800;
+  letter-spacing:.02em;cursor:pointer;
+  transition:background .2s,transform .2s;margin-top:.5rem;
+}
+.btn-form:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-form:disabled{opacity:.6;cursor:not-allowed;transform:none}
+#fmsg{grid-column:1/-1;text-align:center;padding:.8rem;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
+#fmsg.ok{background:rgba(0,180,162,.15);border:1px solid rgba(0,180,162,.3);color:#00C6AE}
+#fmsg.er{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#F87171}
+
+.form-alt{
+  display:flex;align-items:center;justify-content:center;gap:1.2rem;
+  margin-top:1.5rem;padding-top:1.5rem;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.form-alt span{font-size:.78rem;color:rgba(255,255,255,.3)}
+
+/* ── FOOTER ── */
+footer{background:#050508;padding:4rem 4rem 2.5rem}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.ft-name{font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:.4rem}
+.ft-name span{color:var(--teal)}
+.ft-desc{font-size:.8rem;color:rgba(255,255,255,.35);line-height:1.7;margin:1rem 0 1.2rem;max-width:280px}
+.ft-socs{display:flex;gap:.5rem}
+.ft-soc{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.4);font-size:.72rem;font-weight:700;
+  text-decoration:none;transition:background .2s,color .2s;
+}
+.ft-soc:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.ft-col h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.ft-col a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-col a:hover{color:#fff}
+.ft-bot{
+  border-top:1px solid rgba(255,255,255,.05);padding-top:1.8rem;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.72rem;color:rgba(255,255,255,.2);
+}
+.ft-bot .teal{color:var(--teal);font-weight:600}
+
+/* WhatsApp FAB */
+.wa{
+  position:fixed;bottom:2rem;right:2rem;z-index:300;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,.4);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;transition:transform .2s;
+  animation:float 4s ease-in-out infinite;
+}
+.wa:hover{transform:scale(1.12)}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--black);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile nav drawer */
+.mobile-nav{
+  display:none;position:fixed;inset:0;z-index:199;
+  background:rgba(255,255,255,.98);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mobile-nav.open{opacity:1;pointer-events:all}
+.mobile-nav a{
+  font-size:1.8rem;font-weight:800;color:var(--black);text-decoration:none;
+  letter-spacing:-.04em;transition:color .2s;
+}
+.mobile-nav a:hover{color:var(--teal)}
+.mobile-nav .m-cta{
+  margin-top:1rem;padding:1rem 3rem;border-radius:12px;
+  background:var(--teal);color:#fff;font-size:1rem;font-weight:700;
+}
+
+/* ── TABLET (≤1024px) ── */
+@media(max-width:1024px){
+  nav{padding:0 2rem}
+  .nav-links{gap:1.5rem}
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:4rem 2rem;min-height:auto}
+  h1.hero-h{font-size:3.2rem}
+  .srv-grid{grid-template-columns:1fr 1fr;gap:1.2rem}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .about-wrap{grid-template-columns:1fr;gap:3rem}
+  .about-nums{grid-template-columns:repeat(4,1fr)}
+  .mv-cards{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .port-grid{
+    grid-template-columns:repeat(6,1fr);
+    grid-template-rows:220px 220px;
+  }
+  .pi1{grid-column:1/4}
+  .pi2{grid-column:4/7}
+  .pi3{grid-column:1/3;grid-row:2}
+  .pi4{grid-column:3/5;grid-row:2}
+  .pi5{grid-column:5/7;grid-row:2}
+  .pi6{display:none}
+  .cli-grid{grid-template-columns:1fr 1fr}
+  .sec{padding:4rem 2rem}
+  .form-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── MOBILE (≤768px) ── */
+@media(max-width:768px){
+  /* topbar */
+  .topbar{font-size:.65rem;padding:.4rem .5rem;letter-spacing:.04em}
+
+  /* nav */
+  nav{padding:0 1.2rem;height:58px}
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:flex}
+  .mobile-nav{display:flex}
+
+  /* hero */
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{display:none}
+  .hero-left{padding:2.5rem 1.2rem 3rem}
+  h1.hero-h{font-size:2.4rem;letter-spacing:-.03em}
+  .hero-sub{font-size:.88rem;margin-bottom:2rem}
+  .hero-btns{flex-direction:column;gap:.7rem}
+  .btn-teal,.btn-outline,.btn-dark{width:100%;justify-content:center;padding:.9rem}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap}
+  .hs-n{font-size:1.6rem}
+  .hero-badge{margin-bottom:1.2rem}
+
+  /* sections */
+  .sec{padding:3rem 1.2rem}
+  h2.sh{font-size:2rem}
+  h2.about-title{font-size:1.9rem}
+
+  /* services */
+  .srv-grid{grid-template-columns:1fr;gap:1.2rem}
+  .srv-tname{font-size:1.3rem}
+
+  /* about */
+  .about-wrap{grid-template-columns:1fr;gap:2.5rem}
+  .about-nums{grid-template-columns:1fr 1fr;gap:1px}
+  .an-n{font-size:2.2rem}
+  .mv-cards{grid-template-columns:1fr}
+
+  /* portfolio */
+  .port-intro{flex-direction:column;align-items:flex-start;gap:1.2rem;margin-bottom:2rem}
+  .port-grid{
+    display:flex;flex-direction:column;gap:.8rem;
+  }
+  .pi{aspect-ratio:16/9 !important;grid-column:auto !important;grid-row:auto !important}
+  .pi6{display:flex}
+
+  /* why */
+  .why-grid{grid-template-columns:1fr;gap:1rem}
+  .why-card{padding:1.5rem}
+
+  /* clients */
+  .cli-grid{grid-template-columns:1fr 1fr}
+  .cli-cell{padding:1.2rem 1rem}
+  .cli-name{font-size:.78rem}
+
+  /* form */
+  .form-grid{grid-template-columns:1fr}
+  .full-col{grid-column:1}
+  .btn-form{grid-column:1}
+  #fmsg{grid-column:1}
+  .form-alt{flex-direction:column;gap:.8rem}
+  .form-alt .btn-teal,.form-alt .btn-outline{width:100%;justify-content:center}
+
+  /* footer */
+  .ft-grid{grid-template-columns:1fr;gap:2rem}
+  footer{padding:3rem 1.2rem 2rem}
+  .ft-bot{flex-direction:column;gap:.5rem;text-align:center}
+
+  /* wa */
+  .wa{width:50px;height:50px;bottom:1.2rem;right:1.2rem}
+}
+
+/* ── SMALL MOBILE (≤400px) ── */
+@media(max-width:400px){
+  h1.hero-h{font-size:2rem}
+  h2.sh{font-size:1.75rem}
+  .cli-grid{grid-template-columns:1fr}
+  .about-nums{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">Servicio profesional en el Gran San Salvador · <span>+503 7949-7915</span> · Llámanos hoy</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <img src="https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/logo%20julio.png" alt="JBC Engineering Group" style="height:44px;width:44px;object-fit:cover;border-radius:8px">
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#portafolio">Trabajos</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="tel:+50379497915" class="nav-phone">+503 7949-7915</a>
+    <a href="#cita" class="nav-cta">Agendar cita</a>
+  </div>
+  <button class="hamburger" id="ham" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#servicios" class="m-link">Servicios</a>
+  <a href="#nosotros" class="m-link">Nosotros</a>
+  <a href="#portafolio" class="m-link">Trabajos</a>
+  <a href="#clientes" class="m-link">Clientes</a>
+  <a href="#cita" class="m-cta m-link">Agendar cita →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge reveal">
+      <span class="badge-dot"></span>
+      <span class="badge-text">Disponible en el Gran San Salvador</span>
+    </div>
+
+    <h1 class="hero-h reveal delay-1">
+      Tu espacio,<br>
+      <span class="accent">perfectamente</span><br>
+      <span class="line-thin">acondicionado.</span>
+    </h1>
+
+    <p class="hero-sub reveal delay-2">
+      Haz de tu lugar de estar el mejor ambiente acondicionado y confortable, en tu hogar y oficina con JBC.
+    </p>
+
+    <div class="hero-btns reveal delay-3">
+      <a href="#cita" class="btn-teal">
+        Agendar cita
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#portafolio" class="btn-outline">Ver trabajos</a>
+    </div>
+
+    <div class="hero-stats reveal delay-4">
+      <div><div class="hs-n">7<span>+</span></div><div class="hs-l">Años de experiencia</div></div>
+      <div><div class="hs-n">500<span>+</span></div><div class="hs-l">Proyectos realizados</div></div>
+      <div><div class="hs-n">100<span>%</span></div><div class="hs-l">Garantía en trabajos</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/Foto_2.png');background-size:cover;background-position:center;font-size:0;opacity:1;filter:brightness(.45)"></div>
+    <div class="hero-img-layer"></div>
+
+    <!-- Engineering SVG Visual -->
+    <div class="hero-vis-wrap">
+      <svg width="440" height="500" viewBox="0 0 440 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid background -->
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,180,162,0.08)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="440" height="500" fill="url(#grid)"/>
+
+        <!-- Main AC unit silhouette -->
+        <rect x="100" y="130" width="240" height="100" rx="14" fill="rgba(255,255,255,0.07)" stroke="rgba(0,180,162,0.4)" stroke-width="1.5"/>
+        <!-- AC grill lines -->
+        <line x1="110" y1="150" x2="330" y2="150" stroke="rgba(0,180,162,0.2)" stroke-width="1"/>
+        <line x1="110" y1="162" x2="330" y2="162" stroke="rgba(0,180,162,0.15)" stroke-width="1"/>
+        <line x1="110" y1="174" x2="330" y2="174" stroke="rgba(0,180,162,0.15)" stroke-width="1"/>
+        <!-- AC brand text area -->
+        <rect x="185" y="140" width="70" height="14" rx="3" fill="rgba(0,180,162,0.15)"/>
+        <text x="220" y="151" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="7" fill="rgba(0,180,162,0.7)" font-weight="700" letter-spacing="1">HVAC SYSTEM</text>
+        <!-- Display -->
+        <rect x="290" y="138" width="38" height="24" rx="4" fill="rgba(0,180,162,0.2)"/>
+        <text x="309" y="155" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="11" fill="#00B4A2" font-weight="800">20</text>
+        <!-- Fan -->
+        <circle cx="145" cy="180" r="22" stroke="rgba(0,180,162,0.3)" stroke-width="1" fill="none"/>
+        <circle cx="145" cy="180" r="8" fill="rgba(0,180,162,0.15)"/>
+
+        <!-- Condenser unit right -->
+        <rect x="310" y="280" width="90" height="110" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+        <circle cx="355" cy="335" r="35" stroke="rgba(0,180,162,0.25)" stroke-width="1" fill="none"/>
+        <circle cx="355" cy="335" r="22" stroke="rgba(0,180,162,0.15)" stroke-width="1" fill="none"/>
+        <path d="M355 300 L355 370 M320 335 L390 335 M330 305 L380 365 M380 305 L330 365" stroke="rgba(0,180,162,0.15)" stroke-width="0.8"/>
+        <text x="355" y="405" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="6.5" fill="rgba(255,255,255,0.3)" font-weight="600" letter-spacing="1">CONDENSADORA</text>
+
+        <!-- Electrical panel left -->
+        <rect x="50" y="270" width="85" height="110" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+        <rect x="60" y="280" width="65" height="12" rx="3" fill="rgba(255,255,255,0.06)"/>
+        <!-- Breakers -->
+        <rect x="63" y="298" width="22" height="6" rx="2" fill="rgba(0,180,162,0.4)"/>
+        <rect x="63" y="309" width="22" height="6" rx="2" fill="rgba(0,180,162,0.3)"/>
+        <rect x="63" y="320" width="22" height="6" rx="2" fill="rgba(0,180,162,0.4)"/>
+        <rect x="63" y="331" width="22" height="6" rx="2" fill="rgba(0,180,162,0.25)"/>
+        <rect x="91" y="298" width="22" height="6" rx="2" fill="rgba(245,158,11,0.4)"/>
+        <rect x="91" y="309" width="22" height="6" rx="2" fill="rgba(245,158,11,0.3)"/>
+        <rect x="91" y="320" width="22" height="6" rx="2" fill="rgba(245,158,11,0.35)"/>
+        <rect x="91" y="331" width="22" height="6" rx="2" fill="rgba(0,180,162,0.3)"/>
+        <text x="92" y="395" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="6.5" fill="rgba(255,255,255,0.3)" font-weight="600" letter-spacing="1">PANEL ELÉCTRICO</text>
+
+        <!-- Ceiling grid -->
+        <g opacity="0.4">
+          <line x1="60" y1="90" x2="380" y2="90" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <line x1="60" y1="110" x2="380" y2="110" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <line x1="60" y1="124" x2="380" y2="124" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <line x1="100" y1="90" x2="100" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+          <line x1="160" y1="90" x2="160" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+          <line x1="220" y1="90" x2="220" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+          <line x1="280" y1="90" x2="280" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+          <line x1="340" y1="90" x2="340" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+          <!-- LED spots -->
+          <circle cx="130" cy="107" r="6" fill="rgba(255,255,200,0.6)"/>
+          <circle cx="250" cy="107" r="6" fill="rgba(255,255,200,0.6)"/>
+          <path d="M130 113 L120 130 M130 113 L130 130 M130 113 L140 130" stroke="rgba(255,255,200,0.2)" stroke-width="0.8"/>
+          <path d="M250 113 L240 130 M250 113 L250 130 M250 113 L260 130" stroke="rgba(255,255,200,0.2)" stroke-width="0.8"/>
+        </g>
+
+        <!-- Refrigerant lines / tubing -->
+        <path d="M100 230 L50 230 L50 270" stroke="rgba(0,180,162,0.3)" stroke-width="2" stroke-linecap="round" fill="none" stroke-dasharray="6 3"/>
+        <path d="M340 230 L390 230 L390 280 L400 280" stroke="rgba(0,180,162,0.3)" stroke-width="2" stroke-linecap="round" fill="none" stroke-dasharray="6 3"/>
+
+        <!-- Gauge instrument -->
+        <circle cx="200" cy="370" r="35" fill="rgba(255,255,255,0.04)" stroke="rgba(0,180,162,0.25)" stroke-width="1.2"/>
+        <circle cx="200" cy="370" r="25" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" fill="none"/>
+        <path d="M200 345 L200 370" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+        <text x="200" y="418" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="6.5" fill="rgba(255,255,255,0.3)" font-weight="600" letter-spacing="1">MANÓMETRO</text>
+
+        <!-- Floating particles -->
+        <circle cx="70" cy="190" r="3" fill="#00B4A2" opacity="0.5"/>
+        <circle cx="400" cy="150" r="2.5" fill="#00B4A2" opacity="0.4"/>
+        <circle cx="420" cy="400" r="2" fill="#F59E0B" opacity="0.5"/>
+        <circle cx="30" cy="430" r="3.5" fill="#00B4A2" opacity="0.3"/>
+        <!-- Lightning bolt -->
+        <path d="M210 300 L218 282 L213.5 295 L222 278 L210 308 L217 293Z" fill="#F59E0B" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <!-- Float cards -->
+    <div class="work-card" style="top:12%;left:5%;animation:float 5s ease-in-out infinite">
+      <div class="wc-brand">Proyecto reciente</div>
+      <div class="wc-title">Cassette Lennox</div>
+      <div class="wc-sub">Instalación comercial ✓</div>
+    </div>
+
+    <div class="status-card" style="animation:float 4.5s ease-in-out infinite;animation-delay:.8s">
+      <div class="status-icon">✅</div>
+      <div class="status-text">
+        <div class="st-l">Estado del servicio</div>
+        <div class="st-v">Disponible hoy · AMSS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="servicios">
+  <div class="reveal"><div class="label">Especialidades</div></div>
+  <div class="reveal delay-1">
+    <h2 class="sh">Lo que hacemos <span class="a">mejor.</span></h2>
+    <p class="sh-sub">Tres servicios especializados bajo un mismo techo. Sin necesidad de contratar varias empresas.</p>
+  </div>
+
+  <div class="srv-grid">
+    <div class="srv-card reveal delay-1">
+      <div class="srv-top srv-s0">
+        <div class="srv-top-num">01</div>
+        <div class="srv-emoji">
+        <svg width="36" height="36" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24">
+          <line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <polyline points="17 7 12 12 7 7"/><polyline points="7 17 12 12 17 17"/>
+          <polyline points="20 5 17 7 19 10"/><polyline points="4 19 7 17 5 14"/>
+          <polyline points="20 19 17 17 19 14"/><polyline points="4 5 7 7 5 10"/>
+        </svg>
+      </div>
+        <div class="srv-tname">Aire<br>Acondicionado</div>
+        <div class="srv-tcat">HVAC · Climatización</div>
+      </div>
+      <div class="srv-body">
+        <p class="srv-desc">Instalamos, mantenemos y reparamos sistemas de climatización residenciales y comerciales con marcas premium.</p>
+        <div class="srv-items">
+          <div class="srv-item"><span class="srv-dot"></span>Instalación de mini-split y cassette</div>
+          <div class="srv-item"><span class="srv-dot"></span>Mantenimiento preventivo programado</div>
+          <div class="srv-item"><span class="srv-dot"></span>Reparación y diagnóstico técnico</div>
+
+          <div class="srv-item"><span class="srv-dot"></span>Limpieza profunda de unidades</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="srv-card reveal delay-2">
+      <div class="srv-top srv-s1">
+        <div class="srv-top-num">02</div>
+        <div class="srv-emoji">
+        <svg width="36" height="36" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="rgba(255,255,255,0.15)"/>
+        </svg>
+      </div>
+        <div class="srv-tname">Instalaciones<br>Eléctricas</div>
+        <div class="srv-tcat">Residencial · Comercial</div>
+      </div>
+      <div class="srv-body">
+        <p class="srv-desc">Instalaciones eléctricas seguras y certificadas para cualquier tipo de inmueble en el Gran San Salvador.</p>
+        <div class="srv-items">
+          <div class="srv-item"><span class="srv-dot"></span>Instalaciones residenciales completas</div>
+          <div class="srv-item"><span class="srv-dot"></span>Instalaciones comerciales e industriales</div>
+          <div class="srv-item"><span class="srv-dot"></span>Tableros y paneles eléctricos</div>
+          <div class="srv-item"><span class="srv-dot"></span>Tomacorrientes e iluminación LED</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="srv-card reveal delay-3">
+      <div class="srv-top srv-s2">
+        <div class="srv-top-num">03</div>
+        <div class="srv-emoji">
+        <svg width="36" height="36" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/>
+          <rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/>
+          <line x1="7" y1="7" x2="7" y2="7" stroke-width="2"/><line x1="17" y1="7" x2="17" y2="7" stroke-width="2"/>
+          <line x1="7" y1="17" x2="7" y2="17" stroke-width="2"/><line x1="17" y1="17" x2="17" y2="17" stroke-width="2"/>
+        </svg>
+      </div>
+        <div class="srv-tname">Cielo Falso<br>y Acabados</div>
+        <div class="srv-tcat">Construcción · Diseño</div>
+      </div>
+      <div class="srv-body">
+        <p class="srv-desc">Instalación profesional de cielos falsos en distintos materiales para transformar tus espacios interiores.</p>
+        <div class="srv-items">
+          <div class="srv-item"><span class="srv-dot"></span>Tabla yeso (gypsum)</div>
+          <div class="srv-item"><span class="srv-dot"></span>PVC y fibra mineral</div>
+          <div class="srv-item"><span class="srv-dot"></span>Iluminación empotrada LED</div>
+
+          <div class="srv-item"><span class="srv-dot"></span>Proyectos residenciales y comerciales</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec sec-black" id="nosotros">
+  <div class="about-wrap">
+    <div>
+      <div class="about-eyebrow reveal">Nuestra historia</div>
+      <h2 class="about-title reveal delay-1">De empresa familiar<br>a <span style="color:var(--teal)">referente en ingeniería.</span></h2>
+      <p class="about-story reveal delay-2">JBC nació en 2018 como un pequeño emprendimiento familiar, enfocado en instalación y reparación de aires acondicionados y redes eléctricas residenciales.</p>
+      <p class="about-story reveal delay-2">Con los años, evolucionamos hacia una empresa constructora e instaladora integral, incorporando acabados de tabla yeso, cielo falso y obras civiles. Hoy somos un referente en soluciones completas para el Gran San Salvador.</p>
+
+      <div class="about-pills reveal delay-3">
+        <span class="pill">York</span><span class="pill">Lennox</span><span class="pill">Mabe</span>
+        <span class="pill">Innovair</span><span class="pill">Hisense</span><span class="pill">ComfortStar</span>
+      </div>
+
+      <div class="mv-cards reveal delay-4">
+        <div class="mv">
+          <div class="mv-t">Misión</div>
+          <div class="mv-p">Brindar soluciones integrales de climatización, ingeniería eléctrica y construcción con los más altos estándares de calidad, seguridad y compromiso.</div>
+        </div>
+        <div class="mv">
+          <div class="mv-t">Visión</div>
+          <div class="mv-p">Ser la empresa de ingeniería de referencia en El Salvador, reconocida por excelencia técnica y la confianza de constructoras y empresas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-radius:16px;overflow:hidden;margin-bottom:1rem;max-height:200px">
+        <img src="https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/foto_3.jpg" style="width:100%;height:200px;object-fit:cover;object-position:center;display:block;border-radius:16px" alt="Condensadora York instalada por JBC">
+      </div>
+      <div class="about-nums reveal delay-2">
+      <div class="an-cell"><div class="an-n">7<span class="tu">+</span></div><div class="an-l">Años en el mercado</div></div>
+      <div class="an-cell"><div class="an-n">500<span class="tu">+</span></div><div class="an-l">Proyectos completados</div></div>
+      <div class="an-cell"><div class="an-n">100<span class="tu">%</span></div><div class="an-l">Trabajos garantizados</div></div>
+      <div class="an-cell"><div class="an-n" style="font-size:2rem">AMSS</div><div class="an-l">Cobertura Gran San Salvador</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="sec" id="portafolio">
+  <div class="port-intro">
+    <div>
+      <div class="label reveal">Portafolio</div>
+      <h2 class="sh reveal delay-1">Trabajos <span class="a">reales.</span></h2>
+    </div>
+    <a href="https://wa.me/50379497915" target="_blank" class="btn-outline reveal">Ver más en WhatsApp →</a>
+  </div>
+
+  <div class="port-grid">
+    <div class="pi pi1 reveal">
+      <div class="pi-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/Foto_4.png');background-size:cover;background-position:top center"></div>
+      <div class="pi-over"><svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      <div class="pi-label">Cassette Lennox — Instalación Comercial</div>
+    </div>
+    <div class="pi pi2 reveal delay-1">
+      <div class="pi-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/foto_5.jpg');background-size:cover;background-position:center"></div>
+      <div class="pi-over"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      <div class="pi-label">Tablero Eléctrico Residencial</div>
+    </div>
+    <div class="pi pi3 reveal delay-2">
+      <div class="pi-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/foto_6.jpg');background-size:cover;background-position:center"></div>
+      <div class="pi-over"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      <div class="pi-label">Cielo Falso + Iluminación LED</div>
+    </div>
+    <div class="pi pi4 reveal delay-1">
+      <div class="pi-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/foto_7.jpg');background-size:cover;background-position:center"></div>
+      <div class="pi-over"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      <div class="pi-label">Mantenimiento Preventivo AC</div>
+    </div>
+    <div class="pi pi5 reveal delay-2">
+      <div class="pi-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/foto_8.jpg');background-size:cover;background-position:center"></div>
+      <div class="pi-over"><svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      <div class="pi-label">York Inverter — Instalación Residencial y Comercial</div>
+    </div>
+    <div class="pi pi6 reveal delay-3">
+      <div class="pi-bg" style="background-image:url('https://raw.githubusercontent.com/oscarrivas1/jbc-website/main/foto_9.jpg');background-size:cover;background-position:center"></div>
+      <div class="pi-over"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      <div class="pi-label">Cielo Falso — Local Comercial</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY JBC -->
+<section class="sec sec-gray">
+  <div class="reveal"><div class="label">Por qué elegirnos</div></div>
+  <h2 class="sh reveal delay-1">Profesionalismo que se ve.<br><span class="a">Resultados que se sienten.</span></h2>
+
+  <div class="why-grid">
+    <div class="why-card reveal delay-1">
+      <div class="why-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg></div>
+      <div class="why-t">7 años de trayectoria</div>
+      <div class="why-p">Desde 2018 brindando soluciones verificadas en climatización, electricidad y construcción para el Gran San Salvador.</div>
+    </div>
+    <div class="why-card reveal delay-2">
+      <div class="why-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="#00B4A2"/></svg></div>
+      <div class="why-t">Trabajo garantizado</div>
+      <div class="why-p">Todos nuestros trabajos incluyen garantía. Tu satisfacción y la seguridad de la instalación son prioridad absoluta.</div>
+    </div>
+    <div class="why-card reveal delay-3">
+      <div class="why-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+      <div class="why-t">Técnicos certificados</div>
+      <div class="why-p">Equipo capacitado y en constante actualización con las mejores prácticas de la industria HVAC y eléctrica.</div>
+    </div>
+    <div class="why-card reveal delay-1">
+      <div class="why-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <div class="why-t">Contratos de mantenimiento</div>
+      <div class="why-p">Mantenimiento preventivo mensual para empresas, clínicas, restaurantes y condominios. Reducimos averías y costos.</div>
+    </div>
+    <div class="why-card reveal delay-2">
+      <div class="why-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="why-t">Respuesta rápida</div>
+      <div class="why-p">Atención ágil para emergencias y servicios programados. Cubrimos todo el Gran San Salvador de forma confiable.</div>
+    </div>
+    <div class="why-card reveal delay-3">
+      <div class="why-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <div class="why-t">Solución integral</div>
+      <div class="why-p">HVAC, eléctrico y construcción bajo un mismo proveedor. Coordinación perfecta sin complicaciones para ti.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="sec" id="clientes">
+  <div class="reveal"><div class="label">A quién servimos</div></div>
+  <h2 class="sh reveal delay-1">Cualquier espacio.<br><span class="a">Cualquier proyecto.</span></h2>
+
+  <div class="cli-grid">
+    <div class="cli-cell reveal">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="cli-name">Viviendas residenciales</div>
+    </div>
+    <div class="cli-cell reveal delay-1">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      <div class="cli-name">Oficinas y empresas</div>
+    </div>
+    <div class="cli-cell reveal delay-2">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><path d="M2 9h20"/></svg></div>
+      <div class="cli-name">Locales comerciales</div>
+    </div>
+    <div class="cli-cell reveal">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+      <div class="cli-name">Restaurantes</div>
+    </div>
+    <div class="cli-cell reveal delay-1">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="cli-name">Clínicas y consultorios</div>
+    </div>
+    <div class="cli-cell reveal delay-2">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h.01M12 8h.01M17 8h.01"/></svg></div>
+      <div class="cli-name">Bodegas e industria</div>
+    </div>
+    <div class="cli-cell reveal">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <div class="cli-name">Constructoras</div>
+    </div>
+    <div class="cli-cell reveal delay-1">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><rect x="9" y="14" width="6" height="7"/><path d="M3 9h18"/></svg></div>
+      <div class="cli-name">Condominios</div>
+    </div>
+    <div class="cli-cell reveal delay-2">
+      <div class="cli-ico"><svg width="22" height="22" fill="none" stroke="#00B4A2" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <div class="cli-name">Contratos de mantenimiento</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="sec sec-black" id="cita">
+  <div style="max-width:700px;margin:0 auto 2.5rem;text-align:center">
+    <div class="label dark-label reveal">Contáctanos</div>
+    <h2 class="sh light reveal delay-1">Agenda tu <span class="a">cita hoy.</span></h2>
+    <p class="sh-sub light reveal delay-2" style="margin:0.8rem auto 0">Completa el formulario y te contactamos a la brevedad. Sin costos de visita para cotización.</p>
+  </div>
+
+  <div class="form-wrap">
+    <form id="citaForm">
+      <div class="form-grid">
+        <div class="fg reveal delay-1">
+          <label class="fl">Nombre completo *</label>
+          <input class="fi" type="text" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="fg reveal delay-2">
+          <label class="fl">Teléfono / WhatsApp *</label>
+          <input class="fi" type="tel" name="telefono" placeholder="+503 0000-0000" required>
+        </div>
+        <div class="fg reveal delay-1">
+          <label class="fl">Tipo de servicio *</label>
+          <select class="fi" name="servicio" required>
+            <option value="" disabled selected>Selecciona un servicio</option>
+            <option>Instalación de aire acondicionado</option>
+            <option>Mantenimiento de aire acondicionado</option>
+            <option>Reparación de aire acondicionado</option>
+            <option>Instalación eléctrica residencial</option>
+            <option>Instalación eléctrica comercial</option>
+            <option>Tablero eléctrico</option>
+            <option>Cielo falso / Gypsum</option>
+            <option>Contrato de mantenimiento mensual</option>
+            <option>Otro / Consulta general</option>
+          </select>
+        </div>
+        <div class="fg reveal delay-2">
+          <label class="fl">Tipo de inmueble</label>
+          <select class="fi" name="inmueble">
+            <option value="" disabled selected>¿Dónde necesitas el servicio?</option>
+            <option>Vivienda / Casa</option>
+            <option>Oficina</option>
+            <option>Local comercial</option>
+            <option>Restaurante</option>
+            <option>Clínica</option>
+            <option>Bodega</option>
+            <option>Condominio</option>
+            <option>Constructora / Proyecto</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fg reveal delay-1">
+          <label class="fl">Fecha preferida</label>
+          <input class="fi" type="date" name="fecha">
+        </div>
+        <div class="fg reveal delay-2">
+          <label class="fl">Municipio</label>
+          <input class="fi" type="text" name="municipio" placeholder="Ej: Santa Tecla, Antiguo Cuscatlán...">
+        </div>
+        <div class="fg full-col reveal delay-1">
+          <label class="fl">Descripción del servicio requerido</label>
+          <textarea class="fi" name="descripcion" placeholder="Cuéntanos más sobre lo que necesitas..."></textarea>
+        </div>
+        <button type="submit" class="btn-form reveal" id="submitBtn">Enviar solicitud de cita →</button>
+        <div id="fmsg"></div>
+      </div>
+    </form>
+
+    <div class="form-alt reveal">
+      <span>¿Prefiere contacto directo?</span>
+      <a href="https://wa.me/50379497915?text=Hola%20JBC,%20quisiera%20cotizar%20un%20servicio" target="_blank" class="btn-teal" style="padding:.6rem 1.2rem;font-size:.78rem">💬 WhatsApp</a>
+      <a href="tel:+50379497915" class="btn-outline" style="padding:.6rem 1.2rem;font-size:.78rem;border-color:rgba(255,255,255,.15);color:#fff">📞 Llamar</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-name">JBC Engineering<span>®</span></div>
+      <div style="font-size:.65rem;color:rgba(255,255,255,.25);letter-spacing:.15em;text-transform:uppercase">Group · El Salvador · Desde 2018</div>
+      <p class="ft-desc">Transformando espacios en el Gran San Salvador con soluciones integrales de ingeniería — climatización, eléctrico y construcción.</p>
+      <div class="ft-socs">
+        <a href="#" class="ft-soc">fb</a>
+        <a href="#" class="ft-soc">ig</a>
+        <a href="https://wa.me/50379497915" target="_blank" class="ft-soc">wa</a>
+        <a href="#" class="ft-soc">tk</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#">Aire Acondicionado</a></li>
+        <li><a href="#">Instalaciones Eléctricas</a></li>
+        <li><a href="#">Cielo Falso</a></li>
+        <li><a href="#">Contratos de Mantenimiento</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+50379497915">📞 +503 7949-7915</a></li>
+        <li><a href="mailto:contacto@jbcsv.com">✉ contacto@jbcsv.com</a></li>
+        <li><a href="#">📍 Gran San Salvador, SV</a></li>
+        <li><a href="https://wa.me/50379497915" target="_blank">💬 WhatsApp directo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2025 JBC Engineering Group. Todos los derechos reservados.</span>
+    <span>Desarrollado por <span class="teal">Oscar Cárcamo</span> · jbcsv.com</span>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/50379497915?text=Hola%20JBC,%20quisiera%20información%20sobre%20sus%20servicios" target="_blank" class="wa">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+// ── HAMBURGER ──
+const ham=document.getElementById('ham');
+const mNav=document.getElementById('mobileNav');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mNav.classList.toggle('open');
+  document.body.style.overflow=mNav.classList.contains('open')?'hidden':'';
+});
+document.querySelectorAll('.m-link').forEach(l=>l.addEventListener('click',()=>{
+  ham.classList.remove('open');mNav.classList.remove('open');
+  document.body.style.overflow='';
+}));
+
+// ── SCROLL REVEAL ──
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── FORM ──
+const SHEET_URL='https://script.google.com/macros/s/AKfycbzyIWXZw_fD-zvwJlIKeLDyePV0bBTsjxvEqCx2zdrH-MrAfJqIQiXjnntIOCRrcqHk9w/exec';
+document.getElementById('citaForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  const msg=document.getElementById('fmsg');
+  const form=e.target;
+  btn.disabled=true;btn.textContent='Enviando...';
+  const data={
+    fecha_solicitud:new Date().toLocaleString('es-SV'),
+    nombre:form.nombre.value,telefono:form.telefono.value,
+    servicio:form.servicio.value,fecha_cita:form.fecha.value||'Por coordinar',
+    inmueble:form.inmueble.value||'No especificado',
+    municipio:form.municipio.value||'No especificado',
+    descripcion:form.descripcion.value||'Sin descripción'
+  };
+  try{
+    if(SHEET_URL==='REEMPLAZA_CON_TU_GOOGLE_APPS_SCRIPT_URL'){
+      await new Promise(r=>setTimeout(r,1200));
+      msg.textContent='✅ ¡Solicitud enviada! Julio te contactará pronto.';
+      msg.className='ok';msg.style.display='block';form.reset();
+    } else {
+      await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      msg.textContent='✅ ¡Solicitud enviada! Te contactaremos a la brevedad.';
+      msg.className='ok';msg.style.display='block';form.reset();
+    }
+  }catch(err){
+    msg.textContent='❌ Error al enviar. Contáctanos por WhatsApp.';
+    msg.className='er';msg.style.display='block';
+  }
+  btn.disabled=false;btn.textContent='Enviar solicitud de cita →';
+});
+</script>
+</body>
+</html>
